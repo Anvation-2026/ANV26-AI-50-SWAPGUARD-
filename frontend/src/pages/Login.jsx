@@ -132,8 +132,8 @@ try {
       });
 
 if (mounted.current) {
-        navigate("/", { replace: true });
-      }
+  navigate("/dashboard", { replace: true });
+}
     } catch {
       if (mounted.current) {
         setError("Unable to sign in. Check your details and try again.");
