@@ -1,0 +1,335 @@
+/* =========================================================
+   SWAPGUARD — REVIEW COMPLETE
+   Case closure / verification result
+   ========================================================= */
+
+.review-complete-page {
+  min-height: calc(100vh - 72px);
+  padding: 34px 38px 50px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-complete-page::before {
+  content: "";
+  position: absolute;
+  width: 620px;
+  height: 620px;
+  top: -320px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: rgba(70, 215, 155, 0.055);
+  filter: blur(115px);
+  pointer-events: none;
+}
+
+.review-complete-page::after {
+  content: "";
+  position: absolute;
+  width: 430px;
+  height: 430px;
+  bottom: -250px;
+  right: -170px;
+  border-radius: 50%;
+  background: rgba(75, 115, 255, 0.045);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+/* Main result */
+
+.review-complete-content {
+  position: relative;
+  z-index: 2;
+  width: min(820px, 100%);
+  margin: auto;
+  text-align: center;
+}
+
+/* Result icon */
+
+.review-complete-icon {
+  width: 86px;
+  height: 86px;
+  margin: 0 auto 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #70dfad;
+  background:
+    radial-gradient(
+      circle,
+      rgba(70, 215, 155, 0.13),
+      rgba(70, 215, 155, 0.035)
+    );
+  border: 1px solid rgba(70, 215, 155, 0.28);
+  box-shadow:
+    0 0 0 10px rgba(70, 215, 155, 0.025),
+    0 0 55px rgba(70, 215, 155, 0.12);
+  animation: resultAppear .7s ease both;
+}
+
+.review-complete-icon svg {
+  width: 38px;
+  height: 38px;
+}
+
+@keyframes resultAppear {
+  0% {
+    opacity: 0;
+    transform: scale(.65);
+  }
+
+  70% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Eyebrow */
+
+.review-complete-eyebrow {
+  margin: 0 0 9px;
+  color: #69dca9;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* Heading */
+
+.review-complete-content h1 {
+  margin: 0;
+  color: #f3f7fb;
+  font-size: 34px;
+  letter-spacing: -1px;
+}
+
+.review-complete-content > p {
+  max-width: 560px;
+  margin: 12px auto 0;
+  color: #7d889a;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Result card */
+
+.review-result-card {
+  margin-top: 32px;
+  padding: 22px;
+  text-align: left;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.07);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(23,29,40,.97),
+      rgba(11,15,22,.99)
+    );
+  box-shadow:
+    0 28px 70px rgba(0,0,0,.3),
+    inset 0 1px rgba(255,255,255,.035);
+}
+
+/* Card top */
+
+.review-result-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 17px;
+  border-bottom: 1px solid rgba(255,255,255,.055);
+}
+
+.review-result-product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.review-result-product-icon {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  color: #7fa3ff;
+  background: rgba(83,124,255,.09);
+  border: 1px solid rgba(83,124,255,.15);
+}
+
+.review-result-product h3 {
+  margin: 0;
+  color: #e3e8f0;
+  font-size: 13px;
+}
+
+.review-result-product span {
+  display: block;
+  margin-top: 4px;
+  color: #667286;
+  font-size: 9px;
+}
+
+/* Status */
+
+.review-result-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  color: #70dfad;
+  background: rgba(70,215,155,.07);
+  border: 1px solid rgba(70,215,155,.16);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .6px;
+}
+
+/* Result metrics */
+
+.review-result-metrics {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 10px;
+  padding-top: 17px;
+}
+
+.review-result-metric {
+  padding: 13px;
+  border-radius: 11px;
+  background: rgba(255,255,255,.02);
+  border: 1px solid rgba(255,255,255,.05);
+}
+
+.review-result-metric span {
+  display: block;
+  color: #667286;
+  font-size: 8px;
+  letter-spacing: .5px;
+}
+
+.review-result-metric strong {
+  display: block;
+  margin-top: 6px;
+  color: #dce3ec;
+  font-size: 12px;
+}
+
+.review-result-metric.good strong {
+  color: #70dfad;
+}
+
+/* Evidence confirmation */
+
+.review-evidence-confirmed {
+  margin-top: 13px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(70,215,155,.035);
+  border: 1px solid rgba(70,215,155,.09);
+  color: #788e84;
+  font-size: 9px;
+}
+
+.review-evidence-confirmed svg {
+  color: #6cdaa7;
+  flex-shrink: 0;
+}
+
+/* Actions */
+
+.review-complete-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 23px;
+}
+
+.review-complete-primary,
+.review-complete-secondary {
+  height: 43px;
+  padding: 0 20px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .22s ease;
+}
+
+.review-complete-primary {
+  border: none;
+  color: white;
+  background: linear-gradient(135deg,#4e76f3,#668fff);
+  box-shadow: 0 12px 28px rgba(60,100,240,.2);
+}
+
+.review-complete-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 17px 34px rgba(60,100,240,.28);
+}
+
+.review-complete-secondary {
+  color: #aeb8c8;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.025);
+}
+
+.review-complete-secondary:hover {
+  color: #e0e6ef;
+  border-color: rgba(255,255,255,.15);
+  background: rgba(255,255,255,.045);
+}
+
+/* Case reference */
+
+.review-case-reference {
+  margin-top: 19px;
+  color: #4f5b6d;
+  font-family: monospace;
+  font-size: 8px;
+  letter-spacing: .5px;
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+  .review-complete-page {
+    padding: 25px 18px 40px;
+  }
+
+  .review-complete-content h1 {
+    font-size: 27px;
+  }
+
+  .review-result-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .review-result-metrics {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .review-complete-actions {
+    flex-direction: column;
+  }
+
+  .review-complete-primary,
+  .review-complete-secondary {
+    width: 100%;
+  }
+}

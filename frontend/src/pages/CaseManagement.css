@@ -1,0 +1,514 @@
+/* =========================================================
+   SWAPGUARD — CASE MANAGEMENT
+   Enterprise investigation command center
+   ========================================================= */
+
+.case-management-page {
+  min-height: calc(100vh - 72px);
+  padding: 32px 38px 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.case-management-page::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: -320px;
+  right: -220px;
+  border-radius: 50%;
+  background: rgba(75,115,255,.065);
+  filter: blur(110px);
+  pointer-events: none;
+}
+
+/* Header */
+
+.case-management-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.case-management-header h1 {
+  margin: 5px 0 7px;
+  color: #f4f7fb;
+  font-size: 29px;
+  letter-spacing: -.7px;
+}
+
+.case-management-header p {
+  margin: 0;
+  color: #7e899b;
+  font-size: 13px;
+}
+
+.case-management-eyebrow {
+  color: #759cff !important;
+  font-size: 10px !important;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+/* Header action */
+
+.case-management-action {
+  height: 40px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg,#4e76f3,#668fff);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 12px 27px rgba(60,100,240,.2);
+  transition: .22s ease;
+}
+
+.case-management-action:hover {
+  transform: translateY(-2px);
+}
+
+/* Toolbar */
+
+.case-management-toolbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 13px;
+  border-radius: 15px;
+  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(16,21,29,.92);
+}
+
+/* Search */
+
+.case-search {
+  height: 35px;
+  flex: 1;
+  max-width: 330px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 11px;
+  border-radius: 9px;
+  border: 1px solid rgba(255,255,255,.07);
+  background: rgba(255,255,255,.025);
+  color: #647084;
+}
+
+.case-search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #dce3ec;
+  font-size: 10px;
+}
+
+.case-search input::placeholder {
+  color: #596577;
+}
+
+/* Filters */
+
+.case-filter {
+  height: 35px;
+  padding: 0 12px;
+  border-radius: 9px;
+  border: 1px solid rgba(255,255,255,.07);
+  background: rgba(255,255,255,.025);
+  color: #778295;
+  font-size: 9px;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.case-filter:hover {
+  color: #dce3ed;
+  border-color: rgba(100,140,255,.25);
+}
+
+.case-filter.active {
+  color: #dfe8ff;
+  background: rgba(90,130,255,.09);
+  border-color: rgba(90,130,255,.25);
+}
+
+/* Case count */
+
+.case-count {
+  margin-left: auto;
+  color: #626e80;
+  font-size: 9px;
+}
+
+/* Stats */
+
+.case-management-stats {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 11px;
+  margin-bottom: 17px;
+}
+
+.case-management-stat {
+  padding: 15px;
+  border-radius: 13px;
+  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(16,21,29,.9);
+}
+
+.case-management-stat span {
+  display: block;
+  color: #667285;
+  font-size: 8px;
+  letter-spacing: .7px;
+}
+
+.case-management-stat strong {
+  display: block;
+  margin-top: 6px;
+  color: #e1e6ee;
+  font-size: 19px;
+  letter-spacing: -.5px;
+}
+
+.case-management-stat.risk strong {
+  color: #ff8585;
+}
+
+.case-management-stat.pending strong {
+  color: #f2c46d;
+}
+
+.case-management-stat.safe strong {
+  color: #70dfad;
+}
+
+/* Cases container */
+
+.case-management-container {
+  position: relative;
+  z-index: 2;
+  border-radius: 19px;
+  border: 1px solid rgba(255,255,255,.07);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(23,29,40,.97),
+      rgba(11,15,22,.99)
+    );
+  box-shadow:
+    0 28px 70px rgba(0,0,0,.28),
+    inset 0 1px rgba(255,255,255,.035);
+  overflow: hidden;
+}
+
+/* Table header */
+
+.case-table-header {
+  display: grid;
+  grid-template-columns: 1.25fr 1.25fr .8fr .8fr .7fr .8fr;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 18px;
+  border-bottom: 1px solid rgba(255,255,255,.055);
+  background: rgba(255,255,255,.018);
+}
+
+.case-table-header span {
+  color: #586476;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .9px;
+}
+
+/* Case row */
+
+.case-management-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.25fr 1.25fr .8fr .8fr .7fr .8fr;
+  align-items: center;
+  min-height: 76px;
+  padding: 0 18px;
+  border-bottom: 1px solid rgba(255,255,255,.045);
+  transition: .2s ease;
+}
+
+.case-management-row:last-child {
+  border-bottom: none;
+}
+
+.case-management-row:hover {
+  background: rgba(90,130,255,.035);
+}
+
+.case-management-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15px;
+  bottom: 15px;
+  width: 2px;
+  border-radius: 2px;
+  background: transparent;
+}
+
+.case-management-row.high-risk::before {
+  background: #ff6f6f;
+}
+
+.case-management-row.medium-risk::before {
+  background: #eac06b;
+}
+
+.case-management-row.safe-risk::before {
+  background: #69dba7;
+}
+
+/* Case identity */
+
+.case-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.case-avatar {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 10px;
+  color: #7fa3ff;
+  background: rgba(83,124,255,.08);
+  border: 1px solid rgba(83,124,255,.13);
+}
+
+.case-identity h3 {
+  margin: 0;
+  color: #dfe5ed;
+  font-size: 10px;
+}
+
+.case-identity span {
+  display: block;
+  margin-top: 4px;
+  color: #5f6b7d;
+  font-family: monospace;
+  font-size: 8px;
+}
+
+/* Product */
+
+.case-product strong {
+  display: block;
+  color: #cbd3de;
+  font-size: 10px;
+}
+
+.case-product span {
+  display: block;
+  margin-top: 4px;
+  color: #626e80;
+  font-size: 8px;
+}
+
+/* Status */
+
+.case-status {
+  width: max-content;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .4px;
+}
+
+.case-status.review {
+  color: #f0c36d;
+  background: rgba(240,195,109,.07);
+}
+
+.case-status.verified {
+  color: #6cdaa7;
+  background: rgba(70,215,155,.07);
+}
+
+.case-status.rejected {
+  color: #ff8585;
+  background: rgba(255,80,80,.07);
+}
+
+.case-status.investigating {
+  color: #82a5ff;
+  background: rgba(90,130,255,.08);
+}
+
+/* Risk */
+
+.case-risk {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.case-risk-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.case-risk.high {
+  color: #ff8585;
+}
+
+.case-risk.high .case-risk-dot {
+  background: #ff7070;
+  box-shadow: 0 0 8px rgba(255,80,80,.4);
+}
+
+.case-risk.medium {
+  color: #f0c36d;
+}
+
+.case-risk.medium .case-risk-dot {
+  background: #e9bd68;
+}
+
+.case-risk.low {
+  color: #6cdaa7;
+}
+
+.case-risk.low .case-risk-dot {
+  background: #69d9a5;
+}
+
+/* Score */
+
+.case-score {
+  color: #cbd3de;
+  font-family: monospace;
+  font-size: 9px;
+}
+
+.case-score strong {
+  color: #70dfad;
+}
+
+/* Action */
+
+.case-open-button {
+  width: max-content;
+  height: 29px;
+  padding: 0 10px;
+  border-radius: 7px;
+  border: 1px solid rgba(255,255,255,.07);
+  background: rgba(255,255,255,.025);
+  color: #758195;
+  font-size: 8px;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.case-open-button:hover {
+  color: #dce4ee;
+  border-color: rgba(100,140,255,.25);
+  background: rgba(100,140,255,.06);
+}
+
+/* Pagination */
+
+.case-pagination {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 13px;
+  color: #5d687a;
+  font-size: 8px;
+}
+
+.case-pagination-controls {
+  display: flex;
+  gap: 5px;
+}
+
+.case-page-button {
+  width: 29px;
+  height: 29px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.02);
+  color: #697589;
+  cursor: pointer;
+}
+
+.case-page-button.active {
+  color: #dfe7ff;
+  background: rgba(90,130,255,.09);
+  border-color: rgba(90,130,255,.22);
+}
+
+/* Responsive */
+
+@media (max-width: 1050px) {
+  .case-management-stats {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .case-management-container {
+    overflow-x: auto;
+  }
+
+  .case-table-header,
+  .case-management-row {
+    min-width: 900px;
+  }
+}
+
+@media (max-width: 700px) {
+  .case-management-page {
+    padding: 24px 18px 40px;
+  }
+
+  .case-management-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .case-management-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .case-search {
+    max-width: none;
+    flex-basis: 100%;
+  }
+
+  .case-management-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}
