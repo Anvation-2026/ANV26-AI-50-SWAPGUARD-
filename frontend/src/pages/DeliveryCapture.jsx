@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   Camera,
   CheckCircle2,
@@ -19,6 +21,8 @@ const angles = [
 ];
 
 function DeliveryCapture() {
+  const navigate = useNavigate();
+
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const streamRef = useRef(null);
@@ -195,7 +199,6 @@ function DeliveryCapture() {
             successfully registered and locked.
           </p>
 
-
           <div className="delivery-case-card">
 
             <div>
@@ -216,7 +219,6 @@ function DeliveryCapture() {
             </div>
 
           </div>
-
 
           <div className="delivery-verification-list">
 
@@ -244,73 +246,70 @@ function DeliveryCapture() {
 
           <div className="delivery-complete-actions">
 
-  <button
-    className="return-request-button"
-    onClick={() => {
+            <button
+              className="return-request-button"
+              onClick={() => {
+                const deliveryEvidence =
+                  JSON.parse(
+                    localStorage.getItem(
+                      "swapguard_delivery_evidence"
+                    )
+                  );
 
-      const deliveryEvidence =
-        JSON.parse(
-          localStorage.getItem(
-            "swapguard_delivery_evidence"
-          )
-        );
+                const returnCase = {
+                  caseId: `SG-${Math.floor(
+                    1000 + Math.random() * 9000
+                  )}`,
 
-      const returnCase = {
-        caseId: `SG-${Math.floor(
-          1000 + Math.random() * 9000
-        )}`,
+                  orderId:
+                    deliveryEvidence.order.orderId,
 
-        orderId:
-          deliveryEvidence.order.orderId,
+                  product:
+                    deliveryEvidence.order.product,
 
-        product:
-          deliveryEvidence.order.product,
+                  orderValue:
+                    deliveryEvidence.order.value,
 
-        orderValue:
-          deliveryEvidence.order.value,
+                  location:
+                    deliveryEvidence.gps.location,
 
-        location:
-          deliveryEvidence.gps.location,
+                  status:
+                    "Awaiting Pickup",
 
-        status:
-          "Awaiting Pickup",
+                  attempts: 0,
 
-        attempts: 0,
+                  originalEvidence:
+                    deliveryEvidence,
 
-        originalEvidence:
-          deliveryEvidence,
+                  returnEvidence: [],
 
-        returnEvidence: [],
+                  createdAt:
+                    new Date().toISOString(),
 
-        createdAt:
-          new Date().toISOString(),
+                  decision: null,
+                };
 
-        decision: null,
-      };
+                localStorage.setItem(
+                  "swapguard_return_case",
+                  JSON.stringify(returnCase)
+                );
 
-      localStorage.setItem(
-        "swapguard_return_case",
-        JSON.stringify(returnCase)
-      );
+                navigate("/case-management");
+              }}
+            >
+              <RotateCcw size={17} />
+              Customer Requests Return
+            </button>
 
-      window.location.href =
-        "/case-management";
-    }}
-  >
-    <RotateCcw size={17} />
-    Customer Requests Return
-  </button>
+            <button
+              className="secondary-delivery-button"
+              onClick={() => window.location.reload()}
+            >
+              <Package size={17} />
+              New Delivery
+            </button>
 
-
-  <button
-    className="secondary-delivery-button"
-    onClick={() => window.location.reload()}
-  >
-    <Package size={17} />
-    New Delivery
-  </button>
-
-</div>
+          </div>
 
         </div>
 
@@ -354,7 +353,6 @@ function DeliveryCapture() {
 
       </div>
 
-
       {/* ORDER INFO */}
 
       <div className="delivery-order-card">
@@ -393,7 +391,6 @@ function DeliveryCapture() {
 
       </div>
 
-
       {/* MAIN */}
 
       <div className="delivery-layout">
@@ -422,7 +419,6 @@ function DeliveryCapture() {
             </div>
 
           </div>
-
 
           <div className="camera-container">
 
@@ -465,12 +461,10 @@ function DeliveryCapture() {
 
           </div>
 
-
           <canvas
             ref={canvasRef}
             style={{ display: "none" }}
           />
-
 
           <button
             className="capture-button"
@@ -487,7 +481,6 @@ function DeliveryCapture() {
           </button>
 
         </section>
-
 
         {/* PROGRESS */}
 
@@ -513,7 +506,6 @@ function DeliveryCapture() {
 
           </div>
 
-
           <div className="progress-bar">
 
             <div
@@ -523,7 +515,6 @@ function DeliveryCapture() {
             ></div>
 
           </div>
-
 
           <div className="angle-list">
 
@@ -590,7 +581,6 @@ function DeliveryCapture() {
 
           </div>
 
-
           {/* DEVICE DATA */}
 
           <div className="capture-data">
@@ -600,30 +590,34 @@ function DeliveryCapture() {
               <MapPin size={15} />
 
               <div>
+
                 <span>GPS</span>
+
                 <strong>
                   Ready
                 </strong>
+
               </div>
 
             </div>
-
 
             <div>
 
               <Clock3 size={15} />
 
               <div>
+
                 <span>TIMESTAMP</span>
+
                 <strong>
                   Auto recorded
                 </strong>
+
               </div>
 
             </div>
 
           </div>
-
 
           <button
             className="complete-delivery-button"
