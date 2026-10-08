@@ -44,13 +44,11 @@ jobs:
           VITE_API_URL: https://swapguard.onrender.com
         run: npm run build
 
-      - name: Create SPA fallback
-        run: cp frontend/dist/index.html frontend/dist/404.html
+	- name: Create SPA fallback
+  	run: cp frontend/dist/index.html frontend/dist/404.html
 
-      - name: Setup Pages
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+	- name: Setup Pages
+	  uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
