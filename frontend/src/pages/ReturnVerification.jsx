@@ -648,7 +648,7 @@ const verifyReturn = async () => {
     // ======================================================
 
     const response = await fetch(
-      "http://127.0.0.1:8000/verify",
+      `${import.meta.env.VITE_API_URL}/verify`,
       {
         method: "POST",
         body: formData,
