@@ -38,11 +38,16 @@ jobs:
         working-directory: frontend
         run: npm ci
 
-      - name: Build
+            - name: Build
         working-directory: frontend
         env:
           VITE_API_URL: https://swapguard.onrender.com
         run: npm run build
+
+      - name: Create SPA fallback
+        run: cp frontend/dist/index.html frontend/dist/404.html
+
+      - name: Setup Pages
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
