@@ -83,7 +83,7 @@ function AppLayout() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/SwapGuard">
 
       <Routes>
 
