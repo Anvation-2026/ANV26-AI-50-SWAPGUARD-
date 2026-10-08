@@ -27,46 +27,55 @@ function AppLayout() {
 
         <Routes>
 
+          {/* DASHBOARD */}
           <Route
-            path="/"
+            path="/dashboard"
             element={<Dashboard />}
           />
 
+          {/* DELIVERY INVESTIGATION */}
           <Route
             path="/investigation"
             element={<DeliveryCapture />}
           />
 
+          {/* EVIDENCE */}
           <Route
             path="/evidence"
             element={<Evidence />}
           />
 
+          {/* RETURN VERIFICATION */}
           <Route
             path="/return-verification"
             element={<ReturnVerification />}
           />
 
+          {/* AI ANALYSIS */}
           <Route
             path="/ai-analysis"
             element={<AIAnalysis />}
           />
 
+          {/* REVIEW */}
           <Route
             path="/review"
             element={<Review />}
           />
 
+          {/* REVIEW COMPLETE */}
           <Route
             path="/review-complete"
             element={<ReviewComplete />}
           />
 
+          {/* FRAUD NETWORK */}
           <Route
             path="/fraud-network"
             element={<FraudNetwork />}
           />
 
+          {/* CASE MANAGEMENT */}
           <Route
             path="/case-management"
             element={<CaseManagement />}
@@ -87,15 +96,21 @@ function App() {
 
       <Routes>
 
-        {/* LOGIN HAS NO SIDEBAR / TOPBAR */}
+        {/* FIRST SCREEN = LOGIN */}
+        <Route
+          path="/"
+          element={<Login />}
+        />
+
+        {/* LOGIN */}
         <Route
           path="/login"
           element={<Login />}
         />
 
-        {/* APPLICATION */}
+        {/* DASHBOARD + APPLICATION */}
         <Route
-          path="*"
+          path="/*"
           element={<AppLayout />}
         />
 

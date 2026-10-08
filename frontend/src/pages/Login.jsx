@@ -116,7 +116,7 @@ async function handleLogin(event) {
 setError("");
 
 if (demoMode) {
-      navigate("/");
+      navigate("/dashboard");
       return;
     }
 
